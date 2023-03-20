@@ -172,7 +172,7 @@ $("form.ajaxForm").submit(function(e) {
         $(".ajaxForm").css('position', 'relative');
         $(".ajaxForm").append('<div class="loading"><span class="animation"></div></div>');
         $.ajax({
-            url: '<?php echo get_site_url(); ?>/wp-content/themes/moleco/include/form/main.php',
+            url: '<?php echo get_stylesheet_directory_uri(); ?>/include/form/main.php',
             type: 'post',
             data: formData,
             processData: false,
