@@ -161,30 +161,6 @@ form{position: relative;}
 
 <script>
 
-// $('form.ajaxForm input').on('keydown', function(event) {
-//     $(this).css('border','none');
-//     $(this).css('border-bottom','solid 1px #707070');
-//     var alterplaceholder = $(this).attr('placeholder');
-//     if(alterplaceholder.startsWith('Bitte füllen Sie dieses Feld aus!')){
-//         var startIndex = alterplaceholder.indexOf('(') + 1;
-//         var endIndex = alterplaceholder.indexOf(')', startIndex);
-//         var neuerplaceholder = alterplaceholder.substring(startIndex, endIndex);
-//         $(this).attr('placeholder',neuerplaceholder);
-//     }
-// });
-
-// $('input[type=file]').on('change', function(){
-//     $(this).css('border','none');
-//     var alterplaceholder = $(this).attr('placeholder');
-//     if(alterplaceholder.startsWith('Bitte füllen Sie dieses Feld aus!')){
-//         var startIndex = alterplaceholder.indexOf('(') + 1;
-//         var endIndex = alterplaceholder.indexOf(')', startIndex);
-//         var neuerplaceholder = alterplaceholder.substring(startIndex, endIndex);
-//         $(this).attr('placeholder',neuerplaceholder);
-//     }
-// });
-
-
 $("form.ajaxForm").submit(function(e) {
     e.preventDefault();    
     var formData = new FormData(this);
@@ -196,7 +172,7 @@ $("form.ajaxForm").submit(function(e) {
         $(".ajaxForm").css('position', 'relative');
         $(".ajaxForm").append('<div class="loading"><span class="animation"></div></div>');
         $.ajax({
-            url: 'https://www.moleco.de/wp-content/themes/moleco/include/form/main.php',
+            url: '<?php echo get_site_url(); ?>/wp-content/themes/moleco/include/form/main.php',
             type: 'post',
             data: formData,
             processData: false,
