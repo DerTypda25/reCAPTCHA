@@ -1,7 +1,4 @@
 <?php 
-session_start();
-
-
 /*----------------------------------------------Start of CAPTCHA String---------------------------------------------- */
 $permitted_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   
@@ -59,7 +56,7 @@ $string_length = 6;
 $captcha_string = (isset($_COOKIE['captcha']) && $_COOKIE['captcha'] != "" && !$_GET['ref'])? $_COOKIE['captcha'] : secure_generate_string($permitted_chars, $string_length);
 
 $md5_captcha_string = md5(strtoupper($captcha_string));
-setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/hidden");
+setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/");
 
  
 for($i = 0; $i < $string_length; $i++) {

@@ -9,98 +9,98 @@
             <div class="col-6">
                 <p>
                     <label>Text
-                        <input id="pix_text" name="pix_text" placeholder="Text" type="text"  value="<?php echo (isset($_POST["pix_text"]))? $_POST["pix_text"] : ""; ?>" size="17" />
+                        <input id="text" name="text" placeholder="Text" type="text"  value="<?php echo (isset($_POST["text"]))? $_POST["text"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>E-Mail
-                        <input id="pix_email" name="pix_email" placeholder="E-Mail" type="mail"  value="<?php echo (isset($_POST["pix_email"]))? $_POST["pix_email"] : ""; ?>" size="17" />
+                        <input id="email" name="email" placeholder="E-Mail" type="mail"  value="<?php echo (isset($_POST["email"]))? $_POST["email"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Telefon
-                        <input id="pix_tel" name="pix_tel" placeholder="Telefon" type="tel"  value="<?php echo (isset($_POST["pix_tel"]))? $_POST["pix_tel"] : ""; ?>" size="17" />
+                        <input id="tel" name="tel" placeholder="Telefon" type="tel"  value="<?php echo (isset($_POST["tel"]))? $_POST["tel"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>URL
-                        <input id="pix_url" name="pix_url" placeholder="URL" type="url"  value="<?php echo (isset($_POST["pix_url"]))? $_POST["pix_url"] : ""; ?>" size="17" />
+                        <input id="url" name="url" placeholder="URL" type="url"  value="<?php echo (isset($_POST["url"]))? $_POST["url"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Zahl
-                        <input id="pix_number" name="pix_number" placeholder="Zahl" type="number"  value="<?php echo (isset($_POST["pix_number"]))? $_POST["pix_number"] : ""; ?>" size="17" />
+                        <input id="number" name="number" placeholder="Zahl" type="number"  value="<?php echo (isset($_POST["number"]))? $_POST["number"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Datum
-                        <input id="pix_date" name="pix_date" placeholder="Datum" type="date"  value="<?php echo (isset($_POST["pix_date"]))? $_POST["pix_date"] : ""; ?>" size="17" />
+                        <input id="date" name="date" placeholder="Datum" type="date"  value="<?php echo (isset($_POST["date"]))? $_POST["date"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Zeit
-                        <input id="pix_time" name="pix_time" placeholder="Zeit" type="time"  value="<?php echo (isset($_POST["pix_time"]))? $_POST["pix_time"] : ""; ?>" size="17" />
+                        <input id="time" name="time" placeholder="Zeit" type="time"  value="<?php echo (isset($_POST["time"]))? $_POST["time"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Farbe
-                        <input id="pix_color" name="pix_color" placeholder="Farbe" type="color"  value="<?php echo (isset($_POST["pix_color"]))? $_POST["pix_color"] : ""; ?>" size="17" />
+                        <input id="color" name="color" placeholder="Farbe" type="color"  value="<?php echo (isset($_POST["color"]))? $_POST["color"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Bereich
-                        <input id="pix_range" name="pix_range" placeholder="Bereich" type="range"  value="<?php echo (isset($_POST["pix_range"]))? $_POST["pix_range"] : ""; ?>" size="17" />
+                        <input id="range" name="range" placeholder="Bereich" type="range"  value="<?php echo (isset($_POST["range"]))? $_POST["range"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Checkbox
-                        <input id="pix_checkbox" name="pix_checkbox" placeholder="Checkbox" type="checkbox"  value="<?php echo (isset($_POST["pix_checkbox"]))? $_POST["pix_checkbox"] : ""; ?>" size="17" />
+                        <input id="checkbox" name="checkbox" placeholder="Checkbox" type="checkbox"  value="<?php echo (isset($_POST["checkbox"]))? $_POST["checkbox"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Radio
-                        <input id="pix_radio" name="pix_radio" placeholder="Radio" type="radio"  value="<?php echo (isset($_POST["pix_radio"]))? $_POST["pix_radio"] : ""; ?>" size="17" />
+                        <input id="radio" name="radio" placeholder="Radio" type="radio"  value="<?php echo (isset($_POST["radio"]))? $_POST["radio"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Datei
-                        <input id="pix_file" name="pix_file" placeholder="Datei" type="file"  value="<?php echo (isset($_POST["pix_file"]))? $_POST["pix_file"] : ""; ?>" size="17" />
+                        <input id="file" name="file" placeholder="Datei" type="file"  value="<?php echo (isset($_POST["file"]))? $_POST["file"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Passwort
-                        <input id="pix_password" name="pix_password" placeholder="Passwort" type="password"  value="<?php echo (isset($_POST["pix_password"]))? $_POST["pix_password"] : ""; ?>" size="17" />
+                        <input id="password" name="password" placeholder="Passwort" type="password"  value="<?php echo (isset($_POST["password"]))? $_POST["password"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
             <div class="col-6">
                 <p>
                     <label>Versteckt
-                        <input id="pix_hidden" name="pix_hidden" placeholder="Versteckt" type="hidden"  value="<?php echo (isset($_POST["pix_hidden"]))? $_POST["pix_hidden"] : ""; ?>" size="17" />
+                        <input id="hidden" name="hidden" placeholder="Versteckt" type="hidden"  value="<?php echo (isset($_POST["hidden"]))? $_POST["hidden"] : ""; ?>" size="17" />
                     </label>
                 </p>
             </div>
@@ -109,7 +109,7 @@
             <div class="col-12">
                 <p>
                     <label>Textarea
-                        <textarea id="pix_textarea" name="pix_textarea" placeholder="Textarea" rows="5" cols="40"><?php echo (isset($_POST["pix_textarea"]))? $_POST["pix_textarea"] : ""; ?></textarea>
+                        <textarea id="textarea" name="textarea" placeholder="Textarea" rows="5" cols="40"><?php echo (isset($_POST["textarea"]))? $_POST["textarea"] : ""; ?></textarea>
                     </label>
                 </p>
             </div>
@@ -118,7 +118,7 @@
             <div class="col-12">
                 <p>
                     <label>Dropdown
-                        <select id="pix_select" name="pix_select">
+                        <select id="select" name="select">
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                             <option value="3">Option 3</option>
@@ -131,7 +131,7 @@
             <div class="col-12">
                 <p>
                     <div class="captcha">
-                        <?php require( get_stylesheet_directory() . '/include/class_new/reCAPTCHA/main.php'); ?>
+                        <?php require( get_stylesheet_directory() . '/include/class/reCAPTCHA/main.php'); ?>
                     </div>
                 </p>
             </div>
@@ -139,7 +139,7 @@
         <div class="row">
             <div class="col-12">
                 <p>
-                    <input id="pix_submit" name="pix_submit" type="submit" value="Absenden" />
+                    <input id="submit" name="submit" type="submit" value="Absenden" />
                 </p>
             </div>
         </div>

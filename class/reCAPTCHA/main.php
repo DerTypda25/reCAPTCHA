@@ -6,12 +6,12 @@ if(!isset($_COOKIE['solved'])){
 ?>
 <div class="MO_captcha MO_captcha-banner<?php echo (isset($_COOKIE['solved']) && $_COOKIE['solved'] != 'false')? " success" : ""; ?>">
     <label class="ohnohoney" for="name"></label>
-    <input class="ohnohoney honey1" autocomplete="off" type="text" id="name" name="name" placeholder="Your name here" value="">
+    <input class="ohnohoney honey1" autocomplete="off" type="text" id="2451351531sdfsdf" name="2451351531sdfsdf" placeholder="Your name here" value="">
     <label class="ohnohoney" for="email"></label>
-    <input class="ohnohoney honey2" autocomplete="off" type="email" id="mail" name="mail" placeholder="Your e-mail here" value="">
+    <input class="ohnohoney honey2" autocomplete="off" type="email" id="6546sdf165s4df" name="6546sdf165s4df" placeholder="Your e-mail here" value="">
     <div class="MO_captcha-content">
         <div class="MO_upper-row">
-            <img src="<?php echo get_stylesheet_directory_uri(  ); ?>/include/class_new/reCAPTCHA/captcha.php" alt="CAPTCHA" class="MO_captcha-image">
+            <img src="<?php echo get_stylesheet_directory_uri(  ); ?>/include/class/reCAPTCHA/captcha.php" alt="CAPTCHA" class="MO_captcha-image">
             <img src="<?php echo get_stylesheet_directory_uri(  ); ?>/include/class/reCAPTCHA/media/refresh.png" alt="refresh" class="MO_refresh-captcha">
             <img src="<?php echo get_stylesheet_directory_uri(  ); ?>/include/class/reCAPTCHA/media/information-button.png" alt="info" class="MO_info">
             <p class="MO_infotext">Um den Missbrauch des Kontaktformulars zu verhindern, bitte den Zifferncode zur Bestätigung eingeben.</p>
@@ -65,28 +65,30 @@ if(!isset($_COOKIE['solved'])){
     if(document.cookie.indexOf(`captcha_attempts=`) === -1){
         var d = new Date();
         d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
-        document.cookie = 'captcha_attempts=0; expires=' +d.toUTCString()+ '; path=/hidden';
+        document.cookie = 'captcha_attempts=0; expires=' +d.toUTCString()+ '; path=/';
     }
-    
+
+    // refresh captcha
     $(document).on('click','.MO_refresh-captcha',function(){
-        $('.MO_captcha-image').attr('src','<?php echo get_stylesheet_directory_uri(); ?>/include/class_new/reCAPTCHA/captcha.php?ref=true' + Date.now());
+        $('.MO_captcha-image').attr('src','<?php echo get_stylesheet_directory_uri(); ?>/include/class/reCAPTCHA/captcha.php?ref=true' + Date.now());
     });
 
-    $("form.ajax_form").submit(submitButtonsonclick);
+    // submit captcha / form
+    $("form.ajaxForm").submit(submitButtonsonclick);
+    $(".MO_input-field").on("keydown", function(e) { if (e.code === "Enter") submitButtonsonclick(e);});
+    $(document).on('click','form.ajaxForm button[type="submit"]',submitButtonsonclick);
 
-    $(".MO_input-field").on("keydown", function(e) {
-        if (e.code === "Enter") {
-            submitButtonsonclick(e);
-        }
-    });
-
-    $(document).on('click','button.form_ajax',submitButtonsonclick);
 
     function submitButtonsonclick(e) {
         
+        // get CAPTCHA values
         var values = $(".MO_captcha_inputfield");
+
+        // get honeypot values
         var valuehoney1s = $(".honey1");
         var valuehoney2s = $(".honey2");
+
+        // get captcha cookie
         var captcha = document.cookie
                         .split('; ')
                         .find(row => row.startsWith('captcha='))
@@ -95,27 +97,40 @@ if(!isset($_COOKIE['solved'])){
                         .split('; ')
                         .find(row => row.startsWith('captcha_attempts='))
                         .split('=')[1];
+
+        // create new date Object
         var d = new Date();
+
+        // set attempts cookie to expire in 7 days
         d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));          
-        document.cookie = 'captcha_attempts='+(parseInt(attempts)+1)+'; expires=' +d.toUTCString()+ '; path=/hidden';
+        document.cookie = 'captcha_attempts='+(parseInt(attempts)+1)+'; expires=' +d.toUTCString()+ '; path=/';
+
+        // check if one of possible multiple captcha fields is correct
         for (var i = 0; i < values.length; i++) {
+            // check if captcha is correct and honeypots are empty
             if(captcha == $.md5(values[i].value.toUpperCase()) && valuehoney2s[i].value == "" && valuehoney1s[i].value == ""){
-                var banner = $(".MO_captcha-banner");
-                banner.addClass("success");
+                // set frontend cookie to true
+                $(".MO_captcha-banner")addClass("success");
                 var d = new Date();
-                if(attempts == 0){
-                    d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
+                // set cookie to expire in X days depending on attempts
+                switch(attempts){
+                    case attempts == 0:
+                        d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
+                        break;
+                    case attempts >= 3:
+                        d.setTime(d.getTime() + (12 * 60 * 60 * 1000));
+                        break;
+                    case attempts > 0:
+                        d.setTime(d.getTime() + ((7-attempts*3) * 24 * 60 * 60 * 1000));
+                        break;
                 }
-                else if(attempts >= 3){
-                    d.setTime(d.getTime() + (12 * 60 * 60 * 1000));
-                }
-                else if(attempts >0){
-                    d.setTime(d.getTime() + ((7-attempts*3) * 24 * 60 * 60 * 1000));
-                }
-                document.cookie = "solved=true; expires=" +d.toUTCString()+ "; path=/hidden";          
-                document.cookie = 'captcha_attempts='+(parseInt(attempts)-1)+'; expires=' +d.toUTCString()+ '; path=/hidden';
+                // set cookie to true and expire in X days depending on attempts
+                document.cookie = "solved=true; expires=" +d.toUTCString()+ "; path=/";          
+                // set attempts cookie to expire in X days depending on attempts
+                document.cookie = 'captcha_attempts='+(parseInt(attempts)-1)+'; expires=' +d.toUTCString()+ '; path=/';
             }
             else{       
+                // set frontend cookie to false
                 $(values[i]).addClass("incorrect");
             }
         }
