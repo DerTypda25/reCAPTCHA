@@ -150,7 +150,7 @@
 <style>
 
 label{display: block;}
-    .loading{display: none;position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(255, 255, 255, 0.8);z-index: 2;}
+    .loading{display: block;position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(255, 255, 255, 0.8);z-index: 2;}
     .loading .animation{display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 3;border: 8px solid #f3f3f3;border-top: 8px solid #3498db;border-radius: 50%;width: 50px;height: 50px;animation: spin 1s linear infinite;}
     @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -169,7 +169,7 @@ $("form.ajaxForm").submit(function(e) {
                     .split('=')[1];
     if(solved == 'true'){
         $(".ajaxForm").css('position', 'relative');
-        $(".ajaxForm").append('<div class="loading"><span class="animation"></div></div>');
+        $(".ajaxForm").append('<div class="loading"><span class="animation"></span></div>');
         $.ajax({
             url: '<?php echo get_stylesheet_directory_uri(); ?>/include/form/main.php',
             type: 'post',

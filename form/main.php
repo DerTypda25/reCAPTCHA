@@ -2,7 +2,7 @@
 
 $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 require_once( $parse_uri[0] . 'wp-load.php' );
-require_once( get_template_directory() . '/include/class_new/mailClass.php'); 
+require_once( get_stylesheet_directory() . '/include/class/mailClass.php'); 
 
 $messagetext = 'Es wurde eine Nachricht abgeschickt!<br />
     <strong>Stelle</strong>:<br>

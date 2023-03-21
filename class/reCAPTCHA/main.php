@@ -1,6 +1,9 @@
 <?php 
 if(!isset($_COOKIE['solved'])){
-    setcookie('solved','false');
+    echo '<script>
+    var d = new Date();
+    d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));        
+    document.cookie="solved=false; expires=" +d.toUTCString()+ ";path=/";</script>';
 }
 
 ?>
@@ -17,7 +20,7 @@ if(!isset($_COOKIE['solved'])){
             <p class="MO_infotext">Um den Missbrauch des Kontaktformulars zu verhindern, bitte den Zifferncode zur Bestätigung eingeben.</p>
         </div>
         <div class="MO_lower-row">
-            <input <?php echo ($_COOKIE['solved'])? "" : "required"; ?> type="text" id="" class="MO_input-field MO_captcha_inputfield" name="captcha_challenge" placeholder="Bitte tippe die Buchstaben ein" value="<?php echo (isset($_COOKIE['solved']) && $_COOKIE['solved'] != 'false' && isset($_COOKIE['captcha']))? $_COOKIE['captcha'] : ""; ?>">
+            <input <?php echo (isset($_COOKIE['solved']) && $_COOKIE['solved'] != 'false')? "" : "required"; ?> type="text" id="" class="MO_input-field MO_captcha_inputfield" name="captcha_challenge" placeholder="Bitte tippe die Buchstaben ein" value="<?php echo (isset($_COOKIE['solved']) && $_COOKIE['solved'] != 'false' && isset($_COOKIE['captcha']))? $_COOKIE['captcha'] : ""; ?>">
             <span class="MO_submit-captcha MO_captcha-submitbutton">Senden</span>
         </div>
     </div>
@@ -57,11 +60,13 @@ if(!isset($_COOKIE['solved'])){
 .MO_captcha.success .MO_captcha-finish .MO_finish_text{font-size: 1.4rem;margin: 0 10px;color: #868686;}
 .MO_captcha.success .MO_captcha-finish .MO_finish_robot{width: 60px;height: 60px;margin-bottom: 18px;-webkit-transform: scaleX(-1);transform: scaleX(-1);}
 </style>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri() . '/include/class/jquery.md5.js'; ?>"></script>
 <script type="text/javascript">
     var solved = document.cookie
                     .split('; ')
                     .find(row => row.startsWith('solved='))
                     .split('=')[1];
+                    console.log(solved);
     if(document.cookie.indexOf(`captcha_attempts=`) === -1){
         var d = new Date();
         d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
@@ -77,6 +82,7 @@ if(!isset($_COOKIE['solved'])){
     $("form.ajaxForm").submit(submitButtonsonclick);
     $(".MO_input-field").on("keydown", function(e) { if (e.code === "Enter") submitButtonsonclick(e);});
     $(document).on('click','form.ajaxForm button[type="submit"]',submitButtonsonclick);
+    $(document).on('click','.MO_submit-captcha',submitButtonsonclick);
 
 
     function submitButtonsonclick(e) {
@@ -110,24 +116,23 @@ if(!isset($_COOKIE['solved'])){
             // check if captcha is correct and honeypots are empty
             if(captcha == $.md5(values[i].value.toUpperCase()) && valuehoney2s[i].value == "" && valuehoney1s[i].value == ""){
                 // set frontend cookie to true
-                $(".MO_captcha-banner")addClass("success");
+                $(".MO_captcha-banner").addClass("success");
                 var d = new Date();
                 // set cookie to expire in X days depending on attempts
-                switch(attempts){
-                    case attempts == 0:
-                        d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
-                        break;
-                    case attempts >= 3:
-                        d.setTime(d.getTime() + (12 * 60 * 60 * 1000));
-                        break;
-                    case attempts > 0:
-                        d.setTime(d.getTime() + ((7-attempts*3) * 24 * 60 * 60 * 1000));
-                        break;
+                if(attempts == 0){
+                    d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
+                }
+                else if(attempts >= 3){
+                    d.setTime(d.getTime() + (12 * 60 * 60 * 1000));
+                }
+                else{
+                    d.setTime(d.getTime() + ((7-attempts*3) * 24 * 60 * 60 * 1000));
                 }
                 // set cookie to true and expire in X days depending on attempts
-                document.cookie = "solved=true; expires=" +d.toUTCString()+ "; path=/";          
+                document.cookie = 'solved=true; expires=' +d.toUTCString()+ '; path=/';     
                 // set attempts cookie to expire in X days depending on attempts
                 document.cookie = 'captcha_attempts='+(parseInt(attempts)-1)+'; expires=' +d.toUTCString()+ '; path=/';
+                
             }
             else{       
                 // set frontend cookie to false
