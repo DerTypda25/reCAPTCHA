@@ -53,8 +53,11 @@ $fonts = [dirname(__FILE__).'/fonts/Acme-Regular.ttf', dirname(__FILE__).'/fonts
  
 
 $string_length = 6;
-$captcha_string = (isset($_COOKIE['captcha']) && $_COOKIE['captcha'] != "" && !$_GET['ref'])? $_COOKIE['captcha'] : secure_generate_string($permitted_chars, $string_length);
-
+if(isset($_GET['ref'])){
+  $captcha_string = ($_SESSION['captcha_text'] != "" && isset($_SESSION['captcha_text']) && !$_GET['ref'])? $_SESSION['captcha_text'] : secure_generate_string($permitted_chars, $string_length);
+}else{
+  $captcha_string = ($_SESSION['captcha_text'] != "" && isset($_SESSION['captcha_text']))? $_SESSION['captcha_text'] : secure_generate_string($permitted_chars, $string_length);
+}
 $md5_captcha_string = md5(strtoupper($captcha_string));
 setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/");
 

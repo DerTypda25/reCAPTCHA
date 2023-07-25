@@ -78,7 +78,7 @@ foreach($upload_ids as $id){
  *  $attachments => Datei anhänge
  * 
  */
-mail::wp_htmlmail('d.wigger@moleco.de', 'Es wurde eine Bewerbung über moleco.de geschickt', $messagetext, 'Moleco GmbH', 'noreply@moleco.de', $attachments);
+//mail::wp_htmlmail('d.wigger@moleco.de', 'Es wurde eine Bewerbung über moleco.de geschickt', $messagetext, 'Moleco GmbH', 'noreply@moleco.de', $attachments); //
 
 ?>
 <div style='display:block;margin:25px 10px;padding:20px;color:#fff;background-color:#097d09;text-align:center;'>

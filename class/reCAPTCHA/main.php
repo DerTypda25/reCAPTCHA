@@ -21,7 +21,7 @@ if(!isset($_COOKIE['solved'])){
         </div>
         <div class="MO_lower-row">
             <input <?php echo (isset($_COOKIE['solved']) && $_COOKIE['solved'] != 'false')? "" : "required"; ?> type="text" id="" class="MO_input-field MO_captcha_inputfield" name="captcha_challenge" placeholder="Bitte tippe die Buchstaben ein" value="<?php echo (isset($_COOKIE['solved']) && $_COOKIE['solved'] != 'false' && isset($_COOKIE['captcha']))? $_COOKIE['captcha'] : ""; ?>">
-            <span class="MO_submit-captcha MO_captcha-submitbutton">Senden</span>
+            <span class="MO_submit-captcha MO_captcha-submitbutton">Prüfen</span>
         </div>
     </div>
     <div class="MO_captcha-finish">
@@ -94,15 +94,19 @@ if(!isset($_COOKIE['solved'])){
         var valuehoney1s = $(".honey1");
         var valuehoney2s = $(".honey2");
 
-        // get captcha cookie
-        var captcha = document.cookie
-                        .split('; ')
-                        .find(row => row.startsWith('captcha='))
-                        .split('=')[1];
-        var attempts = document.cookie
-                        .split('; ')
-                        .find(row => row.startsWith('captcha_attempts='))
-                        .split('=')[1];
+        // check if cookies exist and get the value from the cookie
+        var captchaCookie = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('captcha='));
+        if (captchaCookie) {
+            var captcha = captchaCookie.split('=')[1];
+        }
+        var attemptsCookie = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('captcha_attempts='));
+        if (attemptsCookie) {
+            var attempts = attemptsCookie.split('=')[1];
+        }
 
         // create new date Object
         var d = new Date();

@@ -1,4 +1,4 @@
-<form id="<!-- Indivieduelle ID -->" class="ajaxForm">
+<form id="<!-- Indivieduelle ID -->" class="ajaxForm" enctype="multipart/form-data" method="post">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
