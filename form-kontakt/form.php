@@ -107,6 +107,7 @@
 
 $("form.ajaxForm").submit(function(e) {
     e.preventDefault();    
+    $(".ajaxForm").find('input').prop('disabled', false);
     var formData = new FormData(this);
     var solved = document.cookie
                     .split('; ')
