@@ -56,7 +56,7 @@ $string_length = 6;
 $captcha_string = secure_generate_string($permitted_chars, $string_length);
 
 $md5_captcha_string = md5(strtoupper($captcha_string));
-setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/", ".azetpr.com");
+setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/");
 header('Content-type: image/png');
  
 for($i = 0; $i < $string_length; $i++) {
