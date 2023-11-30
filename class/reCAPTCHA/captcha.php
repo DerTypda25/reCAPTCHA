@@ -53,22 +53,18 @@ $fonts = [dirname(__FILE__).'/fonts/Acme-Regular.ttf', dirname(__FILE__).'/fonts
  
 
 $string_length = 6;
-if(isset($_GET['ref'])){
-  $captcha_string = ($_SESSION['captcha_text'] != "" && isset($_SESSION['captcha_text']) && !$_GET['ref'])? $_SESSION['captcha_text'] : secure_generate_string($permitted_chars, $string_length);
-}else{
-  $captcha_string = ($_SESSION['captcha_text'] != "" && isset($_SESSION['captcha_text']))? $_SESSION['captcha_text'] : secure_generate_string($permitted_chars, $string_length);
-}
-$md5_captcha_string = md5(strtoupper($captcha_string));
-setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/");
+$captcha_string = secure_generate_string($permitted_chars, $string_length);
 
+$md5_captcha_string = md5(strtoupper($captcha_string));
+setcookie("captcha", $md5_captcha_string, time()+7*24*60*60, "/", ".azetpr.com");
+header('Content-type: image/png');
  
 for($i = 0; $i < $string_length; $i++) {
   $letter_space = 170/$string_length;
   $initial = 5;
   imagettftext($image, 20, rand(-9, 9), $initial + $i*$letter_space, rand(20, 40), $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], substr($captcha_string,$i,1));
 }
- 
-header('Content-type: image/png');
+
 imagepng($image);
 imagedestroy($image);
 /*----------------------------------------------End of CAPTCHA Print string to img---------------------------------------------- */
